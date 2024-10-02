@@ -1,0 +1,91 @@
+
+<div class="image-container">
+    <h2 class="mb-5">
+      <span *ngIf="contact; else nuevoContacto">Editar</span>
+      <ng-template #nuevoContacto>Nuevo</ng-template> Contacto
+    </h2>
+  
+    <div class="row align-items-center">
+      <div class="col-md-6">
+        <div class="presentacion-img"></div>
+      </div>
+  
+      <div class="col-md-6 col-sm-12">
+        <div class="row row-cols-2 justify-content-center">
+          <form *ngIf="form" [formGroup]="form" (ngSubmit)="save()">
+            <div class="mb-3">
+              <label for="name">Nombre</label>
+              <input id="name" type="text" placeholder="Nombre Cliente" class="form-control" formControlName="name">
+              <div *ngIf="form.get('name')?.invalid && form.get('name')?.touched" class="text-danger">
+                <div *ngIf="form.get('name')?.errors?.['required']">
+                  El campo Nombre del Cliente es obligatorio.
+                </div>
+                <div *ngIf="form.get('name')?.errors?.['maxlength']">
+                  El nombre no debe exceder los 100 caracteres.
+                </div>
+                <div *ngIf="form.get('name')?.errors?.['pattern']">
+                  El nombre solo puede contener letras, espacios, acentos y la letra Ñ.
+                </div>
+              </div>
+            </div>
+  
+            <div class="mb-3">
+              <label for="email">Email</label>
+              <input id="email" type="email" placeholder="Email" class="form-control" formControlName="email">
+            </div>
+  
+            <div class="mb-3">
+              <label for="nit">Nit</label>
+              <input id="nit" type="text" placeholder="Nit" class="form-control" formControlName="nit">
+            </div>
+  
+            <div class="mb-3">
+              <label for="nombrePunto">Nombre Punto</label>
+              <input id="nombrePunto" type="text" placeholder="Nombre del Punto" class="form-control" formControlName="nombrePunto">
+            </div>
+  
+            <div class="mb-3">
+              <label for="ciudad">Ciudad</label>
+              <select id="ciudad" class="form-control" formControlName="ciudad">
+                <option value="">Seleccione una ciudad</option>
+                <option value="Cali">Cali</option>
+                <option value="Medellín">Medellín</option>
+                <option value="Bogotá">Bogotá</option>
+              </select>
+            </div>
+  
+            <div class="mb-3">
+              <label for="promotor">Promotor</label>
+              <input id="promotor" type="text" placeholder="Promotor" class="form-control" formControlName="promotor">
+            </div>
+  
+            <div class="mb-3">
+              <label for="rtc">RTC</label>
+              <input id="rtc" type="text" placeholder="RTC" class="form-control" formControlName="rtc">
+              <div *ngIf="form.get('rtc')?.invalid && form.get('rtc')?.touched" class="text-danger">
+                <div *ngIf="form.get('rtc')?.errors?.['pattern']">
+                  El RTC debe contener solo números
+                </div>
+              </div>
+            </div>
+  
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="tratamientoDatos" formControlName="tratamientoDatos">
+              <label class="form-check-label" for="tratamientoDatos">
+                He leído y acepto las políticas de Tratamiento de Datos Personales.
+              </label>
+            </div>
+  
+            <div class="text-end">
+              <button type="button" class="btn btn-light" routerLink="/inicio">
+                Cancelar Opción
+              </button>
+              <button class="btn btn-primary ms-2" type="submit">
+                @if (contact) {Actualizar} @else {Crear} Siguiente
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

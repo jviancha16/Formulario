@@ -1,0 +1,13 @@
+<app-nav></app-nav>
+<p *ngIf="userLoginOn">Usuario No autenticado</p>
+<div *ngIf="userLoginOn">
+    <p>Necesitta Iniciar sesion para ver nuestro contenido</p>
+</div>
+<div> 
+    <app-contact-list></app-contact-list>
+</div>
+<p *ngIf="!userLoginOn">Usuario autenticado</p>
+<div *ngIf="!userLoginOn">
+    <p>usted ha Ingresado a nuestro sistema!</p>
+</div>
+
